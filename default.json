@@ -1,0 +1,22 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended", ":dependencyDashboard", ":semanticCommits", "security:minimumReleaseAgeNpm"],
+  "packageRules": [
+    {
+      "description": "Group all GitHub Actions updates into a single PR",
+      "matchManagers": ["github-actions"],
+      "groupName": "github-actions"
+    },
+    {
+      "description": "Group all npm updates into a single PR",
+      "matchManagers": ["npm"],
+      "groupName": "node-dependencies"
+    },
+    {
+      "description": "Do not upgrade typescript to v7 yet (native Go-based compiler rewrite, wait for ecosystem to stabilize)",
+      "matchManagers": ["npm"],
+      "matchPackageNames": ["typescript"],
+      "allowedVersions": "<7.0.0"
+    }
+  ]
+}
